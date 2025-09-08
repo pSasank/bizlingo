@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Business Lingo Learning</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    #header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    #courseTitle {
+      font-size: 28px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    
+    #courseDescription {
+      font-size: 16px;
+      color: #666;
+      max-width: 500px;
+    }
+    
+    #progress {
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+    
+    #card {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    #errorMessage {
+      color: #dc3545;
+      background: #f8d7da;
+      border: 1px solid #f5c6cb;
+      border-radius: 6px;
+      padding: 15px;
+      margin: 20px 0;
+      display: none;
+    }
+    
+    #loading {
+      font-size: 18px;
+      color: #666;
+    }
+
+    /* Module Selection Styles */
+    #moduleSelection {
+      display: none;
+    }
+
+    #moduleSelection h2 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .module-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .module-card {
+      background: #f8f9fa;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+
+    .module-card:hover {
+      border-color: #007bff;
+      background: #e3f2fd;
+      transform: translateY(-2px);
+    }
+
+    .module-card h3 {
+      margin: 0 0 8px 0;
+      color: #007bff;
+      font-size: 18px;
+    }
+
+    .module-card p {
+      margin: 0 0 10px 0;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .module-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #888;
+    }
+    
+    .question {
+      font-size: 20px;
+      margin-bottom: 25px;
+      line-height: 1.4;
+      color: #333;
+    }
+    
+    .flashcard-term {
+      font-weight: bold;
+      color: #007bff;
+      margin-bottom: 15px;
+    }
+    
+    .options button {
+      display: block;
+      margin: 10px auto;
+      padding: 12px 20px;
+      border: 2px solid #007bff;
+      border-radius: 6px;
+      background: white;
+      color: #007bff;
+      cursor: pointer;
+      width: 90%;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    
+    .options button:hover {
+      background: #007bff;
+      color: white;
+    }
+    
+    .options button.selected {
+      background: #007bff;
+      color: white;
+    }
+    
+    .options button.correct {
+      background: #28a745;
+      border-color: #28a745;
+      color: white;
+    }
+    
+    .options button.incorrect {
+      background: #dc3545;
+      border-color: #dc3545;
+      color: white;
+    }
+    
+    .options button:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+    
+    #explanation {
+      margin-top: 20px;
+      padding: 15px;
+      font-size: 15px;
+      color: #555;
+      background: #f8f9fa;
+      border-radius: 6px;
+      line-height: 1.4;
+      display: none;
+    }
+    
+    #explanation.show {
+      display: block;
+    }
+    
+    .explanation-correct {
+      border-left: 4px solid #28a745;
+    }
+    
+    .explanation-incorrect {
+      border-left: 4px solid #dc3545;
+    }
+    
+    #nextBtn, #backToModulesBtn {
+      margin-top: 25px;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 6px;
+      background: #28a745;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
+
+    #backToModulesBtn {
+      background: #6c757d;
+      margin-right: 10px;
+    }
+
+    #backToModulesBtn:hover {
+      background: #545b62;
+    }
+    
+    #nextBtn:hover {
+      background: #218838;
+    }
+    
+    #nextBtn:disabled {
+      background: #6c757d;
+      cursor: not-allowed;
+    }
+    
+    .completion {
+      text-align: center;
+      color: #28a745;
+    }
+    
+    .completion h2 {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+    
+    #restartBtn, #backToModulesFromComplete {
+      margin-top: 20px;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 6px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #backToModulesFromComplete {
+      background: #6c757d;
+      margin-left: 10px;
+    }
+    
+    #restartBtn:hover {
+      background: #0056b3;
+    }
+
+    #backToModulesFromComplete:hover {
+      background: #545b62;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+  <script src="./startup-speak.js"></script>
+</head>
+<body>
+  <div id="header">
+    <h1 id="courseTitle">Business Lingo Learning</h1>
+    <p id="courseDescription">Master business terminology and concepts</p>
+    <div id="progress"></div>
+  </div>
+
+  <div id="errorMessage"></div>
+
+  <div id="card">
+    <div id="loading">Loading modules...</div>
+
+    <div id="trackSelection" style="display:none; margin-bottom: 30px;">
+      <h2>Choose a Track</h2>
+      <div class="track-list" id="trackList"></div>
+    </div>
+
+    <div id="moduleSelection" style="display:none;">
+      <button id="backToTracksBtn" style="margin-bottom: 20px; background: #6c757d; color: white; padding: 12px 30px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;">Back to Tracks</button>
+      <h2>Choose a Learning Module</h2>
+      <div class="module-list" id="moduleList">
+        <!-- Modules will be populated here -->
+      </div>
+    </div>
+
+    <div id="content" style="display: none;">
+      <div class="question" id="question"></div>
+      <div class="options" id="options"></div>
+      <div id="explanation"></div>
+      <div class="button-group">
+        <button id="backToModulesBtn">Back to Modules</button>
+        <button id="nextBtn" disabled>Next Question</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  let courseData = null;
+  let allTracks = [];
+  let currentTrack = null;
+  let allModules = [];
+  let currentModule = null;
+  let flatQuestions = [];
+  let currentIndex = 0;
+  let selectedAnswer = null;
+  let isAnswered = false;
+
+    // Configuration
+    const CONFIG = {
+      jsonFile: 'startup-speak.json',
+      defaultTitle: 'Business Lingo Learning',
+      defaultDescription: 'Master business terminology and concepts'
+    };
+
+    async function loadData() {
+      try {
+        showLoading(true);
+        
+        // Use the lessonData from the included JavaScript file
+        courseData = lessonData;
+
+        // Validate JSON structure
+        if (!courseData || (!courseData.tracks && !courseData.lessons && !courseData.title)) {
+          throw new Error('Invalid JSON structure. Expected course object with tracks or lessons.');
+        }
+
+        let courseTitle = CONFIG.defaultTitle;
+        let courseDescription = CONFIG.defaultDescription;
+
+        courseTitle = courseData.title || courseTitle;
+        courseDescription = courseData.description || courseDescription;
+
+        document.getElementById('pageTitle').textContent = courseTitle;
+        document.getElementById('courseTitle').textContent = courseTitle;
+        document.getElementById('courseDescription').textContent = courseDescription;
+
+        // If tracks exist, show track selection
+        // Find unique tracks from lessons
+        const lessons = courseData.lessons || [];
+        const trackNames = [...new Set(lessons.map(i => i.track).filter(Boolean))];
+        if (trackNames.length > 0) {
+          allTracks = trackNames.map((trackName, idx) => ({
+            id: idx,
+            title: trackName,
+            description: '',
+            modules: lessons.filter(lesson => lesson.track === trackName)
+          }));
+          showLoading(false);
+          showTrackSelection();
+        } else {
+          // Fallback: show modules directly
+          let lessons = courseData.lessons || courseData.questions || [];
+          allModules = lessons.map((lesson, index) => ({
+            id: index,
+            title: lesson.title || `Module ${index + 1}`,
+            description: lesson.description || 'Learn key business concepts and terminology',
+            questions: lesson.questions || [],
+            questionCount: (lesson.questions || []).length
+          }));
+          showLoading(false);
+          showModuleSelection();
+        }
+        
+      } catch (error) {
+        console.error('Error loading course data:', error);
+        showError(`Error loading course: ${error.message}`);
+        showLoading(false);
+      }
+    }
+
+    function showLoading(show) {
+      document.getElementById('loading').style.display = show ? 'block' : 'none';
+      document.getElementById('moduleSelection').style.display = 'none';
+      document.getElementById('content').style.display = 'none';
+    }
+
+    function showError(message) {
+      const errorDiv = document.getElementById('errorMessage');
+      errorDiv.textContent = message;
+      errorDiv.style.display = 'block';
+    }
+
+    function showModuleSelection() {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('content').style.display = 'none';
+      document.getElementById('trackSelection').style.display = 'none';
+      document.getElementById('moduleSelection').style.display = 'block';
+      document.getElementById('progress').textContent = '';
+
+      const moduleList = document.getElementById('moduleList');
+      moduleList.innerHTML = '';
+
+      allModules.forEach(module => {
+        const moduleCard = document.createElement('div');
+        moduleCard.className = 'module-card';
+        moduleCard.onclick = () => selectModule(module);
+
+        moduleCard.innerHTML = `
+          <h3>${module.title}</h3>
+          <p>${module.description}</p>
+          <div class="module-meta">
+            <span>${module.questionCount} questions</span>
+            <span>📚 Click to start</span>
+          </div>
+        `;
+
+        moduleList.appendChild(moduleCard);
+      });
+    }
+
+    function showTrackSelection() {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('content').style.display = 'none';
+      document.getElementById('moduleSelection').style.display = 'none';
+      document.getElementById('trackSelection').style.display = 'block';
+      document.getElementById('progress').textContent = '';
+
+      const trackList = document.getElementById('trackList');
+      trackList.innerHTML = '';
+
+      allTracks.forEach(track => {
+        const trackCard = document.createElement('div');
+        trackCard.className = 'module-card';
+        trackCard.onclick = () => selectTrack(track);
+
+        trackCard.innerHTML = `
+          <h3>${track.title}</h3>
+          <p>${track.description}</p>
+          <div class="module-meta">
+            <span>${track.modules.length} modules</span>
+            <span>🛤️ Click to follow</span>
+          </div>
+        `;
+
+        trackList.appendChild(trackCard);
+      });
+    }
+
+    function selectTrack(track) {
+      currentTrack = track;
+      allModules = track.modules.map((module, index) => ({
+        id: index,
+        title: module.title || `Module ${index + 1}`,
+        description: module.description || 'Learn key business concepts and terminology',
+        questions: module.questions || [],
+        questionCount: (module.questions || []).length
+      }));
+      showModuleSelection();
+    }
+
+    function selectModule(module) {
+      currentModule = module;
+      currentIndex = 0;
+      
+      // Flatten questions for the selected module
+      flatQuestions = module.questions.map((q, questionIndex) => ({
+        ...q,
+        lessonIndex: module.id,
+        questionIndex,
+        lessonTitle: module.title
+      }));
+      
+      if (flatQuestions.length === 0) {
+        showError('No questions found in this module.');
+        return;
+      }
+      
+      showQuestionView();
+      showQuestion();
+    }
+
+    function showQuestionView() {
+      document.getElementById('moduleSelection').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+      
+      // Update header to show current module
+      document.getElementById('courseDescription').textContent = `Current Module: ${currentModule.title}`;
+    }
+
+    function updateProgress() {
+      const progressDiv = document.getElementById('progress');
+      progressDiv.textContent = `${currentModule.title} - Question ${currentIndex + 1} of ${flatQuestions.length}`;
+    }
+
+    function showQuestion() {
+      if (currentIndex >= flatQuestions.length) {
+        showCompletion();
+        return;
+      }
+
+      const q = flatQuestions[currentIndex];
+      const qDiv = document.getElementById('question');
+      const optDiv = document.getElementById('options');
+      const explDiv = document.getElementById('explanation');
+      const nextBtn = document.getElementById('nextBtn');
+
+      // Reset state
+      selectedAnswer = null;
+      isAnswered = false;
+      explDiv.classList.remove('show', 'explanation-correct', 'explanation-incorrect');
+      nextBtn.disabled = true;
+      nextBtn.textContent = currentIndex === flatQuestions.length - 1 ? 'Finish Module' : 'Next Question';
+
+      updateProgress();
+
+      // Show question based on type
+      if (q.type === "flashcard") {
+        qDiv.innerHTML = `<div class="flashcard-term">${q.term}</div><div>${q.definition}</div>`;
+        optDiv.innerHTML = "";
+        nextBtn.disabled = false; // Flashcards don't require answers
+        isAnswered = true;
+
+      } else if (q.type === "multiple_choice" || q.type === "fill_in_the_blank" || q.type === "scenario") {
+        qDiv.textContent = q.question;
+        optDiv.innerHTML = "";
+
+        if (!q.options || !Array.isArray(q.options)) {
+          showError('Invalid question format: missing options array');
+          return;
+        }
+
+        q.options.forEach((opt, index) => {
+          const btn = document.createElement('button');
+          btn.textContent = opt;
+          btn.onclick = () => selectAnswer(btn, opt, q, index);
+          optDiv.appendChild(btn);
+        });
+
+      } else if (q.type === "true_false") {
+        qDiv.textContent = q.question;
+        optDiv.innerHTML = "";
+
+        ["True", "False"].forEach((opt, index) => {
+          const btn = document.createElement('button');
+          btn.textContent = opt;
+          btn.onclick = () => selectAnswer(btn, opt, q, index);
+          optDiv.appendChild(btn);
+        });
+
+      } else if (q.type === "match_pairs") {
+        // Match pairs UI
+        qDiv.textContent = q.question;
+        optDiv.innerHTML = "";
+
+        // Prepare terms and definitions
+        const terms = Object.keys(q.pairs);
+        const definitions = Object.values(q.pairs);
+        // Shuffle definitions for UI
+        const shuffledDefs = definitions.slice().sort(() => Math.random() - 0.5);
+
+        // Build match UI
+        const matchTable = document.createElement('table');
+        matchTable.style.width = '100%';
+        matchTable.style.margin = '20px 0';
+        matchTable.style.borderCollapse = 'collapse';
+
+        // Store user matches
+        let userMatches = Array(terms.length).fill(null);
+
+        // Build rows
+        terms.forEach((term, i) => {
+          const row = document.createElement('tr');
+          // Term cell
+          const termCell = document.createElement('td');
+          termCell.textContent = term;
+          termCell.style.padding = '8px';
+          termCell.style.fontWeight = 'bold';
+          termCell.style.width = '40%';
+          row.appendChild(termCell);
+          // Select cell
+          const selectCell = document.createElement('td');
+          const select = document.createElement('select');
+          select.style.width = '100%';
+          select.style.padding = '8px';
+          select.innerHTML = `<option value="">Select definition...</option>` + shuffledDefs.map(def => `<option value="${def}">${def}</option>`).join('');
+          select.onchange = () => {
+            userMatches[i] = select.value;
+            // Enable checkBtn only if all selected
+            checkBtn.disabled = userMatches.some(v => !v);
+          };
+          selectCell.appendChild(select);
+          row.appendChild(selectCell);
+          matchTable.appendChild(row);
+        });
+        optDiv.appendChild(matchTable);
+
+        // Add a separate Check Answer button
+        const checkBtn = document.createElement('button');
+        checkBtn.textContent = 'Check Answer';
+        checkBtn.style.marginTop = '20px';
+        checkBtn.style.padding = '12px 30px';
+        checkBtn.style.borderRadius = '6px';
+        checkBtn.style.background = '#007bff';
+        checkBtn.style.color = 'white';
+        checkBtn.style.fontSize = '16px';
+        checkBtn.style.border = 'none';
+        checkBtn.style.cursor = 'pointer';
+        checkBtn.disabled = true;
+        optDiv.appendChild(checkBtn);
+
+        checkBtn.onclick = () => {
+          if (isAnswered) return;
+          isAnswered = true;
+          // Check matches
+          let correct = true;
+          terms.forEach((term, i) => {
+            if (userMatches[i] !== q.pairs[term]) correct = false;
+          });
+          // Show explanation
+          explDiv.textContent = (correct ? '✅ Correct! ' : '❌ Incorrect. ') + (q.explanation || '');
+          explDiv.classList.add('show', correct ? 'explanation-correct' : 'explanation-incorrect');
+          // Disable selects
+          const selects = optDiv.querySelectorAll('select');
+          selects.forEach(sel => sel.disabled = true);
+          checkBtn.disabled = true;
+          nextBtn.disabled = false;
+        };
+        nextBtn.disabled = true;
+
+      } else {
+        console.log(`Unknown question type: ${q.type}`);
+        currentIndex++;
+        showQuestion();
+        return;
+      }
+    }
+
+    function selectAnswer(button, selectedOption, question, optionIndex) {
+      if (isAnswered) return; // Prevent multiple selections
+      
+      selectedAnswer = selectedOption;
+      isAnswered = true;
+      
+      // Disable all buttons and show results
+      const allButtons = document.querySelectorAll('#options button');
+      allButtons.forEach(btn => {
+        btn.disabled = true;
+        if (btn === button) {
+          btn.classList.add('selected');
+        }
+      });
+      
+      // Show correct/incorrect styling
+      const isCorrect = selectedOption === question.answer;
+      button.classList.add(isCorrect ? 'correct' : 'incorrect');
+      
+      // If incorrect, highlight the correct answer
+      if (!isCorrect) {
+        allButtons.forEach(btn => {
+          if (btn.textContent === question.answer) {
+            btn.classList.add('correct');
+          }
+        });
+      }
+      
+      // Show explanation
+      const explDiv = document.getElementById('explanation');
+      const prefix = isCorrect ? '✅ Correct! ' : '❌ Incorrect. ';
+      explDiv.textContent = prefix + (question.explanation || '');
+      explDiv.classList.add('show', isCorrect ? 'explanation-correct' : 'explanation-incorrect');
+      
+      // Enable next button
+      document.getElementById('nextBtn').disabled = false;
+    }
+
+    function showCompletion() {
+      const card = document.getElementById('card');
+      card.innerHTML = `
+        <div class="completion">
+          <h2>🎉 Module Complete!</h2>
+          <p>Congratulations! You've completed <strong>${currentModule.title}</strong> with all ${flatQuestions.length} questions.</p>
+          <div class="button-group">
+            <button id="restartBtn">Restart Module</button>
+            <button id="backToModulesFromComplete">Choose Another Module</button>
+          </div>
+        </div>
+      `;
+      
+      document.getElementById('progress').textContent = `${currentModule.title} completed!`;
+      
+      document.getElementById('restartBtn').addEventListener('click', () => {
+        currentIndex = 0;
+        showQuestionView();
+        showQuestion();
+      });
+
+      document.getElementById('backToModulesFromComplete').addEventListener('click', () => {
+        showModuleSelection();
+        // Reset course description
+        document.getElementById('courseDescription').textContent = CONFIG.defaultDescription;
+      });
+    }
+
+    // Event listeners
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      currentIndex++;
+      showQuestion();
+    });
+
+    document.getElementById('backToModulesBtn').addEventListener('click', () => {
+      showModuleSelection();
+      // Reset course description to track info
+      const trackTitle = currentTrack ? currentTrack.title : 'Learning';
+      document.getElementById('courseDescription').textContent = `Current Track: ${trackTitle}`;
+    });
+
+    document.getElementById('backToTracksBtn').addEventListener('click', () => {
+      showTrackSelection();
+      // Reset course description
+      document.getElementById('courseDescription').textContent = CONFIG.defaultDescription;
+    });
+
+    // Initialize the app
+    loadData();
+  </script>
+</body>
+</html>

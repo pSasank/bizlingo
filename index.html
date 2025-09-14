@@ -463,7 +463,7 @@
       allModules = track.modules.map((module, index) => ({
         id: index,
         title: module.title || `Module ${index + 1}`,
-        description: module.description || 'Learn key business concepts and terminology',
+        description: module.description || module.questions?.find(i=>i.type=="flashcard")?.definition || 'Learn key business concepts and terminology',
         questions: module.questions || [],
         questionCount: (module.questions || []).length
       }));

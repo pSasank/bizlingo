@@ -20,14 +20,13 @@
     
     #header {
       text-align: center;
-      margin-bottom: 10px;
     }
     
     #courseTitle {
       font-size: 28px;
       color: #333;
       margin-bottom: 10px;
-      margin-top:5px;
+      margin-top: 0px;
     }
     
     #courseDescription {
@@ -37,7 +36,7 @@
     }
     
     #progress {
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       font-size: 14px;
       color: #555;
     }
@@ -45,7 +44,7 @@
     #card {
       background: white;
       border-radius: 12px;
-      padding: 10px;
+      padding: 20px;
       width: 100%;
       max-width: 500px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -187,11 +186,11 @@
       background: #f8f9fa;
       border-radius: 6px;
       line-height: 1.4;
-      display: none;
+      visibility: hidden;
     }
     
     #explanation.show {
-      display: block;
+      visibility: visible;
     }
     
     .explanation-correct {
@@ -309,6 +308,10 @@
         <button id="nextBtn" disabled>Next Question</button>
       </div>
     </div>
+    <div id="congrats" style="display: none;">
+      <h2>Congratulations!</h2>
+      <p>You have completed the module.</p>
+    </div>
   </div>
 
   <script>
@@ -398,9 +401,10 @@
     }
 
     function showModuleSelection() {
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('content').style.display = 'none';
-      document.getElementById('trackSelection').style.display = 'none';
+      if(document.getElementById('content') && document.getElementById('content').length) document.getElementById('content').style.display = 'none';
+      if(document.getElementById('trackSelection')) document.getElementById('trackSelection').style.display = 'none';
+      if(document.getElementById('congrats')) document.getElementById('congrats').style.display = 'none';
+
       document.getElementById('moduleSelection').style.display = 'block';
       document.getElementById('progress').textContent = '';
 
@@ -422,7 +426,8 @@
         `;
 
         moduleList.appendChild(moduleCard);
-      });
+      }
+    );
     }
 
     function showTrackSelection() {
@@ -488,6 +493,7 @@
 
     function showQuestionView() {
       document.getElementById('moduleSelection').style.display = 'none';
+      if(document.getElementById('congrats')) document.getElementById('congrats').style.display = 'none';
       document.getElementById('content').style.display = 'block';
       
       // Update header to show current module
@@ -681,7 +687,7 @@
     }
 
     function showCompletion() {
-      const card = document.getElementById('card');
+      const card = document.getElementById('congrats');
       card.innerHTML = `
         <div class="completion">
           <h2>🎉 Module Complete!</h2>
@@ -692,7 +698,8 @@
           </div>
         </div>
       `;
-      
+      card.style.display = 'block';
+      document.getElementById('content').style.display = 'none';
       document.getElementById('progress').textContent = `${currentModule.title} completed!`;
       
       document.getElementById('restartBtn').addEventListener('click', () => {

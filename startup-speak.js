@@ -302,8 +302,8 @@ let lessonData = {"title":"Business Lingo!",
             "type": "multiple_choice",
             "question": "What does 'Dilution' mean in startups?",
             "options": [
-                "Reduction in ownership percentage after new shares are issued.",
                 "An increase in company valuation.",
+                "Reduction in ownership percentage after new shares are issued.",
                 "A decrease in company revenue.",
                 "A random financial metric."
             ],
@@ -322,10 +322,10 @@ let lessonData = {"title":"Business Lingo!",
             "type": "fill_in_the_blank",
             "question": "Dilution reduces an investor’s share of company _____.",
             "options": [
-                "ownership",
-                "revenue",
-                "profit",
-                "valuation"
+              "valuation",
+              "revenue",
+              "ownership",
+              "profit"
             ],
             "answer": "ownership",
             "explanation": "Dilution refers specifically to ownership percentage, not revenue or profit.",
@@ -348,8 +348,8 @@ let lessonData = {"title":"Business Lingo!",
             "type": "multiple_choice",
             "question": "Which of the following is a direct effect of dilution?",
             "options": [
-                "Founders own a smaller percentage of the company.",
                 "The company loses money immediately.",
+                "Founders own a smaller percentage of the company.",
                 "The product quality decreases.",
                 "The office rent increases."
             ],
@@ -368,10 +368,10 @@ let lessonData = {"title":"Business Lingo!",
             "type": "scenario",
             "question": "You own 10% of a company worth $1M. The company raises new funding at a $5M valuation, and your stake drops to 6%. Did you lose value?",
             "options": [
-                "No, the company grew in value, and your smaller stake may still be worth more.",
-                "Yes, you immediately lost money.",
-                "No, dilution never affects investors.",
-                "Yes, because dilution always reduces your wealth."
+              "No, dilution never affects investors.",
+              "Yes, because dilution always reduces your wealth.",
+              "No, the company grew in value, and your smaller stake may still be worth more.",
+              "Yes, you immediately lost money."
             ],
             "answer": "No, the company grew in value, and your smaller stake may still be worth more.",
             "explanation": "Dilution reduces percentage ownership, but if valuation rises, the value of your stake can increase.",
@@ -381,10 +381,11 @@ let lessonData = {"title":"Business Lingo!",
             "type": "fill_in_the_blank",
             "question": "Dilution is a trade-off between giving up ownership and gaining more _____.",
             "options": [
-                "funding",
-                "employees",
-                "office space",
-                "profits"
+              "profits",
+              "employees",
+              "office space",
+              "funding",
+
             ],
             "answer": "funding",
             "explanation": "Companies issue new shares to raise funding, even if it causes dilution.",
@@ -407,9 +408,9 @@ let lessonData = {"title":"Business Lingo!",
       "difficulty": "easy",
       "question": "What does SAFE stand for in fundraising?",
       "options": [
+        "Standard Allocation for Founders' Equity",
         "Simple Agreement for Future Equity",
         "Startup Agreement for Fast Earnings",
-        "Standard Allocation for Founders' Equity",
         "Stock Allocation for Early Employees"
       ],
       "answer": "Simple Agreement for Future Equity",
@@ -433,9 +434,9 @@ let lessonData = {"title":"Business Lingo!",
       "difficulty": "medium",
       "question": "A startup founder tells an angel investor: 'We’re raising $200K on a SAFE.' What does this mean?",
       "options": [
-        "The investor gives $200K now and will receive equity in the future when priced shares are issued.",
-        "The investor gets $200K worth of shares immediately.",
         "The founder is offering a loan that must be repaid with interest.",
+        "The investor gets $200K worth of shares immediately.",
+        "The investor gives $200K now and will receive equity in the future when priced shares are issued.",
         "The investor owns a fixed percentage of the company today."
       ],
       "answer": "The investor gives $200K now and will receive equity in the future when priced shares are issued.",
@@ -453,10 +454,10 @@ let lessonData = {"title":"Business Lingo!",
       "difficulty": "medium",
       "question": "Which of the following best describes a SAFE compared to traditional equity funding?",
       "options": [
+        "It gives founders less control over decision-making immediately.",
         "It delays the valuation discussion until a later funding round.",
         "It guarantees investors a fixed ownership percentage.",
         "It requires the startup to pay back investors with interest.",
-        "It gives founders less control over decision-making immediately."
       ],
       "answer": "It delays the valuation discussion until a later funding round.",
       "explanation": "SAFE agreements postpone setting a company valuation until a future priced round."
@@ -466,9 +467,9 @@ let lessonData = {"title":"Business Lingo!",
       "difficulty": "medium",
       "question": "Unlike a loan, a SAFE does not require ____.",
       "options": [
-        "Repayment",
         "Equity",
         "Valuation",
+        "Repayment",
         "Investors"
       ],
       "answer": "Repayment",
@@ -479,8 +480,8 @@ let lessonData = {"title":"Business Lingo!",
       "difficulty": "hard",
       "question": "You are advising a founder who wants to raise $500K using a SAFE with a valuation cap of $5M. An investor asks: 'Why would I agree to a SAFE instead of buying shares now?' What is the best response?",
       "options": [
-        "Because the SAFE allows you to invest now and receive equity later at a fair price set during a priced round.",
         "Because the SAFE gives you voting rights in the company immediately.",
+        "Because the SAFE allows you to invest now and receive equity later at a fair price set during a priced round.",
         "Because the SAFE guarantees you dividends from company profits.",
         "Because the SAFE ensures you own 10% of the company today."
       ],
@@ -511,9 +512,9 @@ let lessonData = {"title":"Business Lingo!",
       "type": "multiple_choice",
       "question": "What does DAU stand for?",
       "options": [
+        "Daily Average Usage — the time spent on the app each day.",
         "Daily Active Users — the number of unique users active in a day.",
         "Daily Account Updates — the number of accounts updated each day.",
-        "Daily Average Usage — the time spent on the app each day.",
         "Data Analysis Unit — a business intelligence tool."
       ],
       "answer": "Daily Active Users — the number of unique users active in a day.",
@@ -524,8 +525,8 @@ let lessonData = {"title":"Business Lingo!",
       "type": "fill_in_the_blank",
       "question": "DAU tracks the number of unique users who are ____ on a given day.",
       "options": [
-        "active",
         "registered",
+        "active",
         "sleeping",
         "paying"
       ],
@@ -537,9 +538,9 @@ let lessonData = {"title":"Business Lingo!",
       "type": "scenario",
       "question": "Your manager says: 'Our DAU dropped by 20% this week.' What does this mean?",
       "options": [
-        "Fewer unique users logged in or engaged daily.",
         "The company lost money in revenue.",
         "Employee attendance went down.",
+        "Fewer unique users logged in or engaged daily.",
         "The app was removed from the app store."
       ],
       "answer": "Fewer unique users logged in or engaged daily.",
@@ -557,10 +558,10 @@ let lessonData = {"title":"Business Lingo!",
       "type": "multiple_choice",
       "question": "Why do product teams care about DAU?",
       "options": [
-        "It shows how many people actually use the product daily.",
-        "It measures total downloads of the app.",
         "It reports the company’s revenue per day.",
-        "It tracks how many ads are shown daily."
+        "It measures total downloads of the app.",
+        "It tracks how many ads are shown daily.",
+        "It shows how many people actually use the product daily."
       ],
       "answer": "It shows how many people actually use the product daily.",
       "explanation": "DAU reveals whether the product is part of users’ daily habits.",
@@ -570,9 +571,9 @@ let lessonData = {"title":"Business Lingo!",
       "type": "fill_in_the_blank",
       "question": "If a product has 5,000 unique users logging in today, its DAU is ____.",
       "options": [
-        "5,000",
-        "500",
         "50,000",
+        "500",
+        "5,000",
         "5"
       ],
       "answer": "5,000",
@@ -590,8 +591,8 @@ let lessonData = {"title":"Business Lingo!",
       "type": "scenario",
       "question": "Your app has 100,000 total registered users, but only 10,000 DAU. What does this suggest?",
       "options": [
-        "Only a small portion of users are active daily.",
         "All users are equally engaged.",
+        "Only a small portion of users are active daily.",
         "The app is broken and unusable.",
         "DAU and registered users always match."
       ],
@@ -603,10 +604,10 @@ let lessonData = {"title":"Business Lingo!",
       "type": "multiple_choice",
       "question": "Which metric is often compared with DAU to measure retention?",
       "options": [
+        "Revenue per User",
         "MAU (Monthly Active Users)",
-        "Revenue per Employee",
         "Market Share",
-        "Churn Rate of Employees"
+        "Daily earning per user"
       ],
       "answer": "MAU (Monthly Active Users)",
       "explanation": "DAU/MAU ratio shows how often monthly users return daily.",

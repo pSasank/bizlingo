@@ -16,9 +16,9 @@ let lessonData = {"title":"Business Lingo!",
             "type": "multiple_choice",
             "question": "What does 'Valuation' mean in business?",
             "options": [
-                "The estimated market value of a company, either pre-money or post-money.",
                 "The total revenue a company earned in a year.",
                 "The amount of debt a company owes.",
+                "The estimated market value of a company, either pre-money or post-money.",
                 "The total salary paid to employees."
             ],
             "answer": "The estimated market value of a company, either pre-money or post-money.",
@@ -29,8 +29,8 @@ let lessonData = {"title":"Business Lingo!",
             "type": "fill_in_the_blank",
             "question": "Valuation represents the _____ value of a company.",
             "options": [
-                "market",
                 "employee",
+                "market",
                 "inventory",
                 "office"
             ],
@@ -49,10 +49,10 @@ let lessonData = {"title":"Business Lingo!",
             "type": "scenario",
             "question": "During a pitch meeting, an investor asks: 'What’s your pre-money valuation?' What are they asking about?",
             "options": [
-                "The company’s market value before receiving new investment.",
                 "How much annual revenue the company generated.",
                 "The amount of equity employees hold.",
-                "The value of the company after adding investment."
+                "The value of the company after adding investment.",
+                "The company’s market value before receiving new investment."
             ],
             "answer": "The company’s market value before receiving new investment.",
             "explanation": "Pre-money valuation is the estimated worth of the company before new capital is invested.",
@@ -75,10 +75,10 @@ let lessonData = {"title":"Business Lingo!",
             "type": "fill_in_the_blank",
             "question": "Post-money valuation = Pre-money valuation + _____.",
             "options": [
+                "net profit",
                 "new investment",
                 "total revenue",
-                "employee costs",
-                "net profit"
+                "employee costs"
             ],
             "answer": "new investment",
             "explanation": "Post-money valuation adds the fresh investment to the pre-money value.",
@@ -88,9 +88,9 @@ let lessonData = {"title":"Business Lingo!",
             "type": "scenario",
             "question": "A startup has a pre-money valuation of $8M. An investor puts in $2M. What’s the post-money valuation?",
             "options": [
-                "$10M",
                 "$6M",
                 "$12M",
+                "$10M",
                 "$8M"
             ],
             "answer": "$10M",
@@ -101,8 +101,8 @@ let lessonData = {"title":"Business Lingo!",
             "type": "multiple_choice",
             "question": "Why does valuation matter in fundraising?",
             "options": [
-                "It determines how much equity investors receive.",
                 "It shows a company’s employee satisfaction score.",
+                "It determines how much equity investors receive.",
                 "It helps decide the company’s annual revenue target.",
                 "It measures customer churn rate."
             ],
@@ -145,9 +145,9 @@ let lessonData = {"title":"Business Lingo!",
             "type": "multiple_choice",
             "question": "A founder says: 'Our valuation went up after closing a funding round.' What does this mean?",
             "options": [
-                "Their company’s post-money valuation increased after the investment.",
                 "They doubled their annual revenue.",
                 "They increased the number of employees.",
+                "Their company’s post-money valuation increased after the investment.",
                 "They reduced operating costs."
             ],
             "answer": "Their company’s post-money valuation increased after the investment.",
@@ -171,10 +171,10 @@ let lessonData = {"title":"Business Lingo!",
       "type": "multiple_choice",
       "question": "What does a Cap Table show?",
       "options": [
+        "Market share compared to competitors",
         "The ownership structure of a company",
         "Daily cash flow statements",
-        "Employee performance metrics",
-        "Market share compared to competitors"
+        "Employee performance metrics"
       ],
       "answer": "The ownership structure of a company",
       "explanation": "A Cap Table summarizes who owns which shares, options, and equity stakes.",
@@ -184,8 +184,8 @@ let lessonData = {"title":"Business Lingo!",
       "type": "fill_in_the_blank",
       "question": "Cap Table is short for _____ Table.",
       "options": [
-        "Capitalization",
         "Capital",
+        "Capitalization",
         "Capacity",
         "Capitalism"
       ],
@@ -204,9 +204,9 @@ let lessonData = {"title":"Business Lingo!",
       "type": "scenario",
       "question": "An investor asks for your Cap Table before deciding to invest. What do they want to see?",
       "options": [
-        "How ownership is divided among founders, investors, and employees",
         "Your company’s revenue growth chart",
         "Your upcoming marketing campaigns",
+        "How ownership is divided among founders, investors, and employees",
         "Employee salaries and payroll data"
       ],
       "answer": "How ownership is divided among founders, investors, and employees",
@@ -217,10 +217,10 @@ let lessonData = {"title":"Business Lingo!",
       "type": "multiple_choice",
       "question": "Which of the following is typically NOT included in a Cap Table?",
       "options": [
-        "Shareholders and their equity percentages",
+        "Founders’ and investors’ shareholdings",
         "Convertible notes or options",
         "Revenue projections for the next year",
-        "Founders’ and investors’ shareholdings"
+        "Shareholders and their equity percentages"
       ],
       "answer": "Revenue projections for the next year",
       "explanation": "Cap Tables list ownership and equity, not financial forecasts.",
@@ -230,10 +230,10 @@ let lessonData = {"title":"Business Lingo!",
       "type": "fill_in_the_blank",
       "question": "When a startup raises new funding, the Cap Table is updated to reflect _____ of shares.",
       "options": [
-        "Dilution",
+        "Profits",
         "Inflation",
         "Expenses",
-        "Profits"
+        "Dilution"
       ],
       "answer": "Dilution",
       "explanation": "New shares issued to investors dilute existing ownership, which is shown in the Cap Table.",
@@ -250,9 +250,9 @@ let lessonData = {"title":"Business Lingo!",
       "type": "scenario",
       "question": "A founder owns 50% of the company, but after raising new investment, their ownership drops to 35%. Which concept does the Cap Table help track?",
       "options": [
+        "Revenue loss",
         "Equity dilution",
         "Profit margins",
-        "Revenue loss",
         "Debt repayment"
       ],
       "answer": "Equity dilution",
@@ -263,9 +263,9 @@ let lessonData = {"title":"Business Lingo!",
       "type": "multiple_choice",
       "question": "Why do startups maintain a Cap Table?",
       "options": [
-        "To track ownership changes and prepare for fundraising or exits",
         "To calculate monthly operational expenses",
         "To set employee performance bonuses",
+        "To track ownership changes and prepare for fundraising or exits",
         "To report taxes to the government"
       ],
       "answer": "To track ownership changes and prepare for fundraising or exits",
@@ -276,9 +276,9 @@ let lessonData = {"title":"Business Lingo!",
       "type": "scenario",
       "question": "A VC firm refuses to invest because your Cap Table looks 'messy.' What might that mean?",
       "options": [
-        "Too many small investors or unclear ownership records",
         "The company has too many employees",
         "Your revenue model is unclear",
+        "Too many small investors or unclear ownership records",
         "Your financial statements are inaccurate"
       ],
       "answer": "Too many small investors or unclear ownership records",
